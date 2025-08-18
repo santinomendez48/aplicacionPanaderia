@@ -1,4 +1,4 @@
-import sequelize from "../.data/base_config";
+import sequelizeConfig from "../.data/base_config";
 import { DataTypes, Model } from "sequelize";
 
 class Producto extends Model {};
@@ -14,13 +14,13 @@ Producto.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        precio: {
+        costo: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         }
     },
     {
-        sequelize,
+        sequelizeConfig,
         modelName: 'Producto',
         tableName: 'Productos',
         timestamps: false

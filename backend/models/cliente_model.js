@@ -1,4 +1,4 @@
-import sequelize from "../.data/base_config";
+import sequelizeConfig from "../.data/base_config";
 import { DataTypes, Model } from "sequelize";
 
 class Cliente extends Model {};
@@ -13,7 +13,15 @@ Cliente.init(
         nombre: {
             type: DataTypes.STRING, 
             allowNull: false
-        }
+        },
+        telefono: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        direccion: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
     },
     {
         sequelize,
