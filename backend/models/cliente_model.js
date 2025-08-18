@@ -1,4 +1,4 @@
-import sequelizeConfig from "../.data/base_config";
+import sequelize from "../.data/db.js";
 import { DataTypes, Model } from "sequelize";
 
 class Cliente extends Model {};
@@ -16,7 +16,8 @@ Cliente.init(
         },
         telefono: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: true,
+            unique: true // Asegurar que el teléfono sea único
         },
         direccion: {
             type: DataTypes.STRING,

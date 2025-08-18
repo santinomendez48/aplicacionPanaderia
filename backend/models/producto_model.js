@@ -1,4 +1,4 @@
-import sequelizeConfig from "../.data/base_config";
+import sequelize from "../.data/db.js";
 import { DataTypes, Model } from "sequelize";
 
 class Producto extends Model {};
@@ -20,7 +20,7 @@ Producto.init(
         }
     },
     {
-        sequelizeConfig,
+        sequelize,
         modelName: 'Producto',
         tableName: 'Productos',
         timestamps: false

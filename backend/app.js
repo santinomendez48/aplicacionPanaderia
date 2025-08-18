@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
-import sequelizeConfig from './.data/base_config.js';
+import sequelize from './.data/db.js';
+
+// Importar todas las rutas
+import clienteRouter from './routes/cliente_route.js';
 
 const app = express();
 const PORT = 3000;
@@ -26,14 +29,21 @@ app.use(cors())
             </html>
         `);
     })
+
+    // Rutas de la aplicacion
+    .use('/api/clientes', clienteRouter)
+
+    // Manejo de rutas no encontradas
     .use((req, res) => { res.status(404).json({ error: "Ruta no encontrada" }) });
 
 // Funcion para iniciar el servidor
 (async function start() {
     // Conexion con la base de datos
     try {
-        await sequelizeConfig.authenticate();
+        await sequelize.authenticate();
         console.log("Conexión establecida...");
+        await sequelize.sync();
+        console.log("Modelos sincronizados y base de datos lista...");
     }
     catch (error) {
         console.log("Error, Imposible conectar a la bd...\n", error);

@@ -1,4 +1,4 @@
-import sequelizeConfig from "../.data/base_config";
+import sequelize from "../.data/db.js";
 import { DataTypes, Model } from "sequelize";
 
 class Pedido extends Model {}
@@ -29,7 +29,7 @@ Pedido.init(
         }
     },
     {
-        sequelize: sequelizeConfig,
+        sequelize: sequelize,
         modelName: 'Pedido',
         tableName: 'Pedidos',
         timestamps: false
