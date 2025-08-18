@@ -32,14 +32,6 @@ export default class RepositorioBase {
         return false;
     }
 
-    async buscar(condiciones) {
-        return this.modelo.findAll({ where: condiciones });
-    }
-
-    async contar(condiciones) {
-        return this.modelo.count({ where: condiciones });
-    }
-
     async existe(condiciones) {
         const count = await this.modelo.count({ where: condiciones });
         return count > 0;
