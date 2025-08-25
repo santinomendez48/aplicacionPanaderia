@@ -1,19 +1,19 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-    return sequelize.define("Cliente", {
-        id_cliente: {
+    return sequelize.define("Entrega", {
+        id_entrega: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        nombre: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+        fecha: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        }
     }, 
     {
-        tableName: "clientes",
+        tableName: "entregas",
         timestamps: false
     });
 };

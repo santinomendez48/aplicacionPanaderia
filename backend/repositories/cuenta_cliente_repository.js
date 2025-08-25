@@ -1,5 +1,5 @@
 import RepositorioBase from "./base_repository";
-import CuentaCliente from "../models/cuenta_cliente_model";
+import CuentaCliente from "../models/index.js";
 
 class CuentaClienteRepository extends RepositorioBase {
     constructor() {

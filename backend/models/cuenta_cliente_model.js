@@ -1,40 +1,35 @@
-import sequelize from "../.data/db.js";
-import { DataTypes, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 
-class CuentaCliente extends Model {}
-
-CuentaCliente.init(
-    {
-        idCuentaCliente: {
+export default (sequelize) => {
+    return sequelize.define("CuentaCliente", {
+        id_movimiento: {
             type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            primaryKey: true
         },
-        idCliente: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'Clientes', // Nombre de la tabla referenciada
-                key: 'idCliente' // Clave primaria de la tabla referenciada
-            }
+        tipo_movimiento: {
+            type: DataTypes.ENUM("DEBITO", "CREDITO"),
+            allowNull: false
         },
-        saldo: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false,
-            defaultValue: 0.00 // Valor por defecto para el saldo de la cuenta
+        monto: {
+            type: DataTypes.FLOAT,
+            allowNull: false
         },
         fecha: {
             type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW // Valor por defecto para la fecha de creación de la cuenta
+            defaultValue: DataTypes.NOW
+        },
+        metodo_pago: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        observaciones: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     },
     {
-        sequelize: sequelize,
-        modelName: 'CuentaCliente',
-        tableName: 'CuentasClientes',
+        tableName: "cuenta_cliente",
         timestamps: false
-    }
-);
-
-export default CuentaCliente;
+    });
+};

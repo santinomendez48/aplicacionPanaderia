@@ -1,5 +1,5 @@
 import RepositorioBase from './base_repository.js';
-import Cliente from '../models/cliente_model.js';
+import Cliente from '../models/index.js';
 
 class ClienteRepository extends RepositorioBase {
     constructor() {
