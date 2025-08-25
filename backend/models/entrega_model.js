@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-    return sequelize.define("Entrega", {
+    const Entrega = sequelize.define("Entrega", {
         id_entrega: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -16,4 +16,6 @@ export default (sequelize) => {
         tableName: "entregas",
         timestamps: false
     });
+
+    return Entrega;
 };

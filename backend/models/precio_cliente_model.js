@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
-    return sequelize.define("PrecioCliente", {
+    const PrecioCliente = sequelize.define("PrecioCliente", {
         id_precio: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -21,4 +21,6 @@ export default (sequelize) => {
             { unique: true, fields: ["id_cliente", "id_producto"] }
         ]
     });
+
+    return PrecioCliente;
 };

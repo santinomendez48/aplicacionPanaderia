@@ -1,23 +1,21 @@
-import { DataTypes } from "sequelize";
+const { DataTypes } = require("sequelize");
 
 export default (sequelize) => {
-    return sequelize.define("DetalleEntrega", {
-        id_detalle: {
+    const Producto = sequelize.define("Producto", {
+        id_producto: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        cantidad: {
-            type: DataTypes.INTEGER,
+        nombre: {
+            type: DataTypes.STRING,
             allowNull: false
         },
-        precio_unitario: {
-            type: DataTypes.FLOAT,
-            allowNull: false
-        }
     }, 
     {
-        tableName: "detalles_entrega",
+        tableName: "productos",
         timestamps: false
     });
+
+    return Producto;
 };

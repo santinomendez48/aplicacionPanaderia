@@ -1,21 +1,13 @@
-import RepositorioBase from "./base_repository";
-import CuentaCliente from "../models/index.js";
+
+import RepositorioBase from "./base_repository.js";
+import { CuentaCliente } from "../models/index.js";
+
 
 class CuentaClienteRepository extends RepositorioBase {
     constructor() {
         super(CuentaCliente);
     }
-
-    async obtenerPorCliente(idCliente) {
-        return this.modelo.findAll({
-            where: { idCliente: idCliente },
-            order: [['fecha', 'DESC']] // Ordenar por fecha de creación, más reciente primero
-        });
-    }   
-
-    async existeCuentaCliente(idCliente, idCuenta) {
-        return this.existe({ idCliente: idCliente, idCuentaCliente: idCuenta });
-    }
+    // Aquí puedes agregar métodos personalizados si lo necesitas
 }
 
-export default new CuentaClienteRepository;
+export default new CuentaClienteRepository();

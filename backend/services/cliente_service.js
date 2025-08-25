@@ -61,6 +61,13 @@ class ClienteService {
     }
 
     async obtenerPorId(id) {
+        // validar id
+        if (!id) {
+            throw new Error('ID es requerido');
+        }
+        if (typeof id !== 'number') {
+            throw new Error('ID debe ser un número');
+        }
         // Verificar si el cliente existe antes de obtener
         const cliente = await clienteRepository.obtenerPorId(id);
         if (!cliente) {
