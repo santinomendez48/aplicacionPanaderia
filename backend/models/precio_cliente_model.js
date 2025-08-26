@@ -8,7 +8,7 @@ export default (sequelize) => {
             primaryKey: true
         },
         // FK a cliente y producto (relaciones en index.js)
-        precio_unitario: {
+        precio_especial: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
         }

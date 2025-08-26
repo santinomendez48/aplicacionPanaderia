@@ -1,20 +1,36 @@
 import cuentaClienteRepository from '../repositories/cuenta_cliente_repository.js';
+import clienteRepository from '../repositories/cliente_repository.js';
 
 class CuentaClienteService {
-	async crearCuentaCliente(datos) {
+	async crearMovimientoCuentaCliente(datos) {
 		// validar datos antes de crear la cuenta
-        if (!datos.idCliente || !datos.tipo || !datos.monto || !datos.descripcion
-            || (datos.tipo !== 'DEBITO' && datos.tipo !== 'CREDITO')) {
-            throw new Error('idCliente, tipo (DEBITO o CREDITO), monto y descripcion son requeridos');
+        if (!datos.id_cliente || !datos.tipo_movimiento || !datos.monto || !datos.descripcion || !datos.fecha ) {
+            throw new Error('idCliente, tipo (DEBITO o CREDITO), monto, descripcion y fecha son obligatorios');
         }
-        if (datos.monto <= 0) {
-            throw new Error('monto debe ser un número positivo');
-        }
+		if (datos.tipo !== 'DEBITO' && datos.tipo !== 'CREDITO') {
+			throw new Error('El tipo de movimiento debe ser DEBITO o CREDITO');
+		}
+		// validar fecha
+		if (datos.fecha && isNaN(Date.parse(datos.fecha))) {
+			throw new Error('La fecha proporcionada no es válida');
+		}
+		// validar observaciones
+		if (datos.observaciones && typeof datos.observaciones !== 'string') {
+			throw new Error('observaciones debe ser una cadena de texto');
+		}
         // validar tipo de datos
-        if (typeof datos.idCliente !== 'number' || typeof datos.tipo !== 'string'
+        if (typeof datos.id_cliente !== 'number' || typeof datos.tipo_movimiento !== 'string'
             || typeof datos.monto !== 'number' || typeof datos.descripcion !== 'string') {
             throw new Error('idCliente debe ser un número, tipo y descripcion deben ser cadenas de texto, monto debe ser un número');
         }
+		if (datos.monto <= 0) {
+            throw new Error('monto debe ser un número positivo');
+        }
+		// validar existencia del cliente
+		const cliente = await clienteService.obtenerPorId(datos.idCliente);
+		if (!cliente) {
+			throw new Error('El cliente con el id proporcionado no existe');
+		}
         // crear la cuenta
 		return cuentaClienteRepository.crear(datos);
 	}
@@ -27,11 +43,49 @@ class CuentaClienteService {
 		return cuentaClienteRepository.obtenerPorId(id);
 	}
 
-	async actualizarCuentaCliente(id, datos) {
+	async actualizarMovimientoCuentaCliente(id, datos) {
+		// validar existencia del movimiento
+		const movimiento = await cuentaClienteRepository.obtenerPorId(id);
+		if (!movimiento) {
+			return null;
+		}
+		// validar datos antes de actualizar 
+		if (!datos.id_cliente || !datos.tipo_movimiento || !datos.monto || !datos.descripcion || !datos.fecha ) {
+            throw new Error('idCliente, tipo (DEBITO o CREDITO), monto, descripcion y fecha son obligatorios');
+        }
+		if (datos.tipo !== 'DEBITO' && datos.tipo !== 'CREDITO') {
+			throw new Error('El tipo de movimiento debe ser DEBITO o CREDITO');
+		}
+		// validar fecha
+		if (datos.fecha && isNaN(Date.parse(datos.fecha))) {
+			throw new Error('La fecha proporcionada no es válida');
+		}
+		// validar observaciones
+		if (datos.observaciones && typeof datos.observaciones !== 'string') {
+			throw new Error('observaciones debe ser una cadena de texto');
+		}
+        // validar tipo de datos
+        if (typeof datos.id_cliente !== 'number' || typeof datos.tipo_movimiento !== 'string'
+            || typeof datos.monto !== 'number' || typeof datos.descripcion !== 'string') {
+            throw new Error('idCliente debe ser un número, tipo y descripcion deben ser cadenas de texto, monto debe ser un número');
+        }
+		if (datos.monto <= 0) {
+            throw new Error('monto debe ser un número positivo');
+        }
+		// validar existencia del cliente
+		const cliente = await clienteRepository.obtenerPorId(datos.idCliente);
+		if (!cliente) {
+			throw new Error('El cliente con el id proporcionado no existe');
+		}
 		return cuentaClienteRepository.actualizar(id, datos);
 	}
 
 	async eliminarCuentaCliente(id) {
+		// validar existencia del movimiento
+		const movimiento = await cuentaClienteRepository.obtenerPorId(id);
+		if (!movimiento) {
+			return false;
+		}
 		return cuentaClienteRepository.eliminar(id);
 	}
 }

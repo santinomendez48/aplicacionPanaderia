@@ -30,7 +30,7 @@ class ProductoService {
         // Verificar si el producto existe antes de eliminar
         const producto = await productoRepository.obtenerPorId(id);
         if (!producto) {
-            throw new Error('Producto no encontrado');
+            return false;
         }
         // Eliminar el producto
         return productoRepository.eliminar(id);
@@ -40,7 +40,7 @@ class ProductoService {
         // Verificar si el producto existe antes de actualizar
         const producto = await productoRepository.obtenerPorId(id);
         if (!producto) {
-            throw new Error('Producto no encontrado');
+            return null;
         }
         // Validar datos antes de actualizar
         if (!datos.nombre) {
@@ -65,7 +65,7 @@ class ProductoService {
         // validar si el producto existe
         const producto = await productoRepository.obtenerPorId(id);
         if (!producto) {
-            throw new Error('Producto no encontrado');
+            return null;
         }
         return producto;
     }
