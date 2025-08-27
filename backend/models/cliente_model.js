@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
     const Cliente = sequelize.define("Cliente", {
@@ -11,6 +11,10 @@ export default (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        telefono: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }
     }, 
     {
         tableName: "clientes",

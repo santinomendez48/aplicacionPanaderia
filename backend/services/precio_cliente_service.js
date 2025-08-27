@@ -3,18 +3,30 @@ import clienteRepository from "../repositories/cliente_repository.js";
 import productoRepository from "../repositories/producto_repository.js";
 
 class PrecioClienteService {
-    async crearPrecioCliente(datos) {
-        // Validar datos antes de crear el precio especial para cliente
-        if (!datos.id_cliente || !datos.id_producto || !datos.precio_especial) {
-            throw new Error('id_cliente, id_producto y precio_especial son obligatorios');
+    async validarDatos(datos) {
+        // Validar datos 
+        if (!datos.id_cliente && !datos.id_producto && !datos.precio_especial) {
+            throw new Error('Al menos uno de los campos id_cliente, id_producto o precio_especial debe ser proporcionado');
         }
         // Validar tipo de datos
-        if (typeof datos.id_cliente !== 'number' || typeof datos.id_producto !== 'number' || typeof datos.precio_especial !== 'number') {
-            throw new Error('id_cliente e id_producto deben ser números, precio_especial debe ser un número');
+        if (datos.id_cliente && typeof datos.id_cliente !== 'number') {
+            throw new Error('id_cliente debe ser un número');
         }
-        if (datos.precio_especial <= 0) {
+        if (datos.id_producto && typeof datos.id_producto !== 'number') {
+            throw new Error('id_producto debe ser un número');
+        }
+        if (datos.precio_especial && typeof datos.precio_especial !== 'number') {
+            throw new Error('precio_especial debe ser un número');
+        }
+        if (datos.precio_especial && datos.precio_especial <= 0) {
             throw new Error('precio_especial debe ser un número positivo');
         }
+        return true;
+    }
+
+    async crearPrecioCliente(datos) {
+        // Validar datos antes de crear el precio especial para cliente
+        await this.validarDatos(datos);
         // Validar existencia del cliente
         const cliente = await clienteRepository.obtenerPorId(datos.id_cliente);
         if (!cliente) {
@@ -105,22 +117,7 @@ class PrecioClienteService {
             return null;
         }
         // Validar datos antes de actualizar
-        if (!datos.id_cliente && !datos.id_producto && !datos.precio_especial) {
-            throw new Error('Al menos uno de los campos id_cliente, id_producto o precio_especial debe ser proporcionado');
-        }
-        // Validar tipo de datos
-        if (datos.id_cliente && typeof datos.id_cliente !== 'number') {
-            throw new Error('id_cliente debe ser un número');
-        }
-        if (datos.id_producto && typeof datos.id_producto !== 'number') {
-            throw new Error('id_producto debe ser un número');
-        }
-        if (datos.precio_especial && typeof datos.precio_especial !== 'number') {
-            throw new Error('precio_especial debe ser un número');
-        }
-        if (datos.precio_especial && datos.precio_especial <= 0) {
-            throw new Error('precio_especial debe ser un número positivo');
-        }
+        await this.validarDatos(datos);
         // Validar existencia del cliente si se proporciona id_cliente
         if (datos.id_cliente) {
             const cliente = await clienteRepository.obtenerPorId(datos.id_cliente);

@@ -7,9 +7,10 @@ export default (sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-        fecha: {
+        fecha_entrega: {
             type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW
+            defaultValue: DataTypes.NOW,
+            unique: true
         }
     }, 
     {

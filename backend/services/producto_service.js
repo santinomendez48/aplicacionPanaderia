@@ -1,27 +1,29 @@
 import productoRepository from "../repositories/producto_repository.js";
 
 class ProductoService {
+    async validarDatos(datos) {
+        // Validar dato
+        if (!datos.nombre) {
+            throw new Error('Nombre debe ser proporcionado');
+        }
+        // Validar tipo de dato
+        if (typeof datos.nombre !== 'string') {
+            throw new Error('Nombre debe ser una cadena de texto');
+        }
+    }
+
     async obtenerTodos() {
         return productoRepository.obtenerTodos();
     }
 
     async crearProducto(datos) {
         // Validar datos antes de crear el producto
-        if (!datos.nombre) {
-            throw new Error('Nombre es requerido');
-        }
-
-        // Validar tipo de datos
-        if (typeof datos.nombre !== 'string') {
-            throw new Error('Nombre debe ser una cadena de texto');
-        }
-
+        await this.validarDatos(datos);
         // Verificar si el producto ya existe
         const existe = await productoRepository.existe({ nombre: datos.nombre });
         if (existe) {
             throw new Error('Ya existe un producto con este nombre');
         }
-        
         // Crear el producto
         return productoRepository.crear(datos);
     }
@@ -43,13 +45,7 @@ class ProductoService {
             return null;
         }
         // Validar datos antes de actualizar
-        if (!datos.nombre) {
-            throw new Error('Nombre debe ser proporcionado');
-        }
-        // Validar tipo de datos
-        if (typeof datos.nombre !== 'string') {
-            throw new Error('Nombre debe ser una cadena de texto');
-        }
+        await this.validarDatos(datos);
         // Actualizar el producto
         return productoRepository.actualizar(id, datos);
     }

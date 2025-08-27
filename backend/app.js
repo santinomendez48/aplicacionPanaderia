@@ -4,6 +4,12 @@ import sequelize from './.data/db.js';
 
 // Importar todas las rutas
 import clienteRouter from './routes/cliente_route.js';
+import productoRouter from './routes/producto_route.js';
+import entregaRouter from './routes/entrega_route.js';
+import detalleEntregaRouter from './routes/detalle_entrega_route.js';
+import cuentaClienteRouter from './routes/cuenta_cliente_route.js';
+import precioClienteRouter from './routes/precio_cliente_route.js';
+
 
 const app = express();
 const PORT = 3000;
@@ -32,7 +38,12 @@ app.use(cors())
 
     // Rutas de la aplicacion
     .use('/api/clientes', clienteRouter)
-
+    .use('/api/productos', productoRouter)
+    .use('/api/entregas', entregaRouter)
+    .use('/api/detalles_entrega', detalleEntregaRouter)
+    .use('/api/cuentas_cliente', cuentaClienteRouter)
+    .use('/api/precios_cliente', precioClienteRouter)
+    
     // Manejo de rutas no encontradas
     .use((req, res) => { res.status(404).json({ error: "Ruta no encontrada" }) });
 

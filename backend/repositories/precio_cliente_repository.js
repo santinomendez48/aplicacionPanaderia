@@ -1,5 +1,5 @@
-import RepositorioBase from "./base_repository";
-import PrecioCliente from "../models/index.js";
+import RepositorioBase from "./base_repository.js";
+import { PrecioCliente } from "../models/index.js";
 
 class PrecioClienteRepository extends RepositorioBase {
     constructor() {

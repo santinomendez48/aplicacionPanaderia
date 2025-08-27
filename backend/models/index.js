@@ -1,9 +1,9 @@
-import clienteModel from "./cliente.js";
-import productoModel from "./producto.js";
-import entregaModel from "./entrega.js";
-import detalleEntregaModel from "./detalleEntrega.js";
-import cuentaClienteModel from "./cuentaCliente.js";
-import precioClienteModel from "./precioCliente.js";
+import clienteModel from "./cliente_model.js";
+import productoModel from "./producto_model.js";
+import entregaModel from "./entrega_model.js";
+import detalleEntregaModel from "./detalle_entrega_model.js";
+import cuentaClienteModel from "./cuenta_cliente_model.js";
+import precioClienteModel from "./precio_cliente_model.js";
 import sequelize from "../.data/db.js";
 
 // Inicializar modelos

@@ -1,6 +1,6 @@
 
 import RepositorioBase from "./base_repository.js";
-import CuentaCliente from "../models/index.js";
+import { CuentaCliente } from "../models/index.js";
 
 
 class CuentaClienteRepository extends RepositorioBase {

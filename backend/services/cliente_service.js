@@ -1,27 +1,36 @@
 import clienteRepository from '../repositories/cliente_repository.js';
 
 class ClienteService {
+    async validarDatos() {
+        // Validar existencia de datos 
+        if (!datos.nombre) {
+            throw new Error('Nombre es requerido!');
+        }
+        if (!datos.telefono) {
+            throw new Error('Telefono es requerido!')
+        }
+        // Validar tipos de datos
+        if (typeof datos.nombre !== 'string') {
+            throw new Error('Nombre debe ser una cadena de texto!');
+        }
+        if (typeof datos.nombre !== 'string') {
+            throw new Error('Telefono debe ser una cadena de texto!')
+        }
+        return true;
+    }
+
     async obtenerTodos() {
         return clienteRepository.obtenerTodos();
     }
 
     async crearCliente(datos) {
-        // Validar datos antes de crear el cliente
-        if (!datos.nombre || !datos.telefono || !datos.direccion) {
-            throw new Error('Nombre, telefono y direccion son requeridos');
-        }
-
-        // Validar tipo de datos
-        if (typeof datos.nombre !== 'string' || typeof datos.telefono !== 'string' || typeof datos.direccion !== 'string') {
-            throw new Error('Nombre, telefono y direccion deben ser cadenas de texto');
-        }
-
+        // validar datos
+        await this.validarDatos(datos)
         // Verificar si el cliente ya existe
-        const existe = await clienteRepository.existe({ telefono: datos.telefono });
+        const existe = await clienteRepository.existe({ telefono: datos.telefono, nombre: datos.nombre });
         if (existe) {
-            throw new Error('Ya existe un cliente con este telefono');
+            throw new Error('El cliente ya existe!');
         }
-        
         // Crear el cliente
         return clienteRepository.crear(datos);
     }
@@ -43,19 +52,7 @@ class ClienteService {
             return null;
         }
         // Validar datos antes de actualizar
-        if (!datos.nombre && !datos.telefono && !datos.direccion) {
-            throw new Error('Al menos uno de los campos nombre, telefono o direccion debe ser proporcionado');
-        }
-        // Validar tipo de datos
-        if (datos.nombre && typeof datos.nombre !== 'string') {
-            throw new Error('Nombre debe ser una cadena de texto');
-        }
-        if (datos.telefono && typeof datos.telefono !== 'string') {
-            throw new Error('Telefono debe ser una cadena de texto');
-        }
-        if (datos.direccion && typeof datos.direccion !== 'string') {
-            throw new Error('Direccion debe ser una cadena de texto');
-        }
+        await this.validarDatos(datos);
         // Actualizar el cliente
         return clienteRepository.actualizar(id, datos);
     }

@@ -1,5 +1,5 @@
-import RepositorioBase from "./base_repository";
-import Producto from "../models/index.js";
+import RepositorioBase from "./base_repository.js";
+import { Producto } from "../models/index.js";
 
 class ProductoRepository extends RepositorioBase {
     constructor() {
