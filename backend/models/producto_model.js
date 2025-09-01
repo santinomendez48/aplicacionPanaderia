@@ -11,6 +11,10 @@ export default (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        precio_compra: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false
+        },
     }, 
     {
         tableName: "productos",

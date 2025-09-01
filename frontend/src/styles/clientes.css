@@ -1,0 +1,171 @@
+/* Filtros precios especiales */
+.filtros-precios {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.filtro-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+.filtro-item label {
+  font-size: 0.98rem;
+  color: #1976d2;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.filtro-item select {
+  padding: 7px 10px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #f8fafc;
+  color: #222;
+  transition: border 0.2s;
+}
+.filtro-item select:focus {
+  border: 1.5px solid #1976d2;
+  outline: none;
+}
+
+/* Estilos globales y de clientes */
+
+.clientes-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 12px;
+}
+
+.clientes-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 600px) {
+  .clientes-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.clientes-lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 600px) {
+  .clientes-lista {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 900px) {
+  .clientes-lista {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.card-cliente {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 20px 18px 16px 18px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.2s;
+}
+.card-cliente:hover {
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.10);
+}
+
+.card-cliente h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.2rem;
+  color: #1976d2;
+}
+
+.card-cliente p {
+  margin: 0;
+  color: #333;
+}
+
+.card-cliente .card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-primary {
+  background: #1976d2;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #1565c0;
+}
+.btn-danger {
+  background: #d32f2f;
+  color: #fff;
+}
+.btn-danger:hover {
+  background: #b71c1c;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: #fff;
+  padding: 32px 24px 24px 24px;
+  border-radius: 12px;
+  min-width: 300px;
+  max-width: 95vw;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+.modal-content h2 {
+  margin-top: 0;
+  color: #1976d2;
+}
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.form-group input {
+  padding: 8px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+@media (max-width: 500px) {
+  .modal-content {
+    padding: 16px 6px 12px 6px;
+  }
+}

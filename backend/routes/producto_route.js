@@ -3,7 +3,7 @@ import productoService from '../services/producto_service.js';
 
 const router = express.Router();
 
-// Obtener todos los clientes
+// Obtener todos los Productos
 router.get('/', async (req, res) => {
     try {
         const productos = await productoService.obtenerTodos();
@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 // Crear un nuevo producto
 router.post('/', async (req, res) => {
     const datos = req.body;
+    console.log('Datos recibidos para crear producto:', datos);
     try {
         const producto = await productoService.crearProducto(datos);
         if (!producto) {

@@ -2,13 +2,20 @@ import productoRepository from "../repositories/producto_repository.js";
 
 class ProductoService {
     async validarDatos(datos) {
+        console.log('Validando datos del producto:', datos);
         // Validar dato
         if (!datos.nombre) {
             throw new Error('Nombre debe ser proporcionado');
         }
+        if (!datos.precio_compra) {
+            throw new Error('Precio de compra debe ser proporcionado');
+        }
         // Validar tipo de dato
         if (typeof datos.nombre !== 'string') {
             throw new Error('Nombre debe ser una cadena de texto');
+        }
+        if (isNaN(datos.precio_compra) || Number(datos.precio_compra) <= 0) {
+            throw new Error('Precio de compra debe ser un número positivo');
         }
     }
 

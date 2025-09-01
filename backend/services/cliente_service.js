@@ -1,7 +1,7 @@
 import clienteRepository from '../repositories/cliente_repository.js';
 
 class ClienteService {
-    async validarDatos() {
+    async validarDatos(datos) {
         // Validar existencia de datos 
         if (!datos.nombre) {
             throw new Error('Nombre es requerido!');

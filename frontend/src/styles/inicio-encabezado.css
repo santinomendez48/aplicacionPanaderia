@@ -1,0 +1,104 @@
+/* Dropdown funcional para navbar */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  color: #1976d2;
+  min-width: 140px;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.10);
+  border-radius: 6px;
+  z-index: 10;
+  flex-direction: column;
+  padding: 6px 0;
+}
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+  display: flex;
+}
+.dropdown-item {
+  color: #1976d2;
+  background: none;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background 0.2s;
+  display: block;
+}
+.dropdown-item:hover {
+  background: #e3f2fd;
+}
+/* Estilos para inicio y encabezado */
+
+.inicio-container {
+  max-width: 700px;
+  margin: 40px auto 0 auto;
+  padding: 32px 16px;
+  background: linear-gradient(120deg, #f8fafc 60%, #e3f2fd 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(25,118,210,0.08);
+  text-align: center;
+}
+.inicio-container h1 {
+  color: #1976d2;
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.inicio-container p {
+  color: #333;
+  font-size: 1.1rem;
+}
+
+/* Encabezado */
+.encabezado-navbar {
+  background: #1976d2;
+  color: #fff;
+  padding: 0 18px;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(25,118,210,0.10);
+}
+.encabezado-navbar .logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 24px;
+}
+.encabezado-navbar .nav-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.encabezado-navbar .nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.encabezado-navbar .nav-link.active,
+.encabezado-navbar .nav-link:hover {
+  background: #1565c0;
+}
+@media (max-width: 700px) {
+  .encabezado-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 8px;
+  }
+  .encabezado-navbar .nav-links {
+    gap: 10px;
+    margin-top: 8px;
+  }
+}

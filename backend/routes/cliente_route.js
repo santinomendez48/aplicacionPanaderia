@@ -20,8 +20,10 @@ router.get('/', async (req, res) => {
 
 // Crear un nuevo cliente
 router.post('/', async (req, res) => {
+    const datos = req.body;
+    console.log( 'Datos recibidos para crear cliente:', datos );
     try {
-        const cliente = await clienteService.crearCliente(req.body);
+        const cliente = await clienteService.crearCliente(datos);
         if (!cliente) {
             return res.status(400).json({ error: 'No se pudo crear el cliente' });
         }

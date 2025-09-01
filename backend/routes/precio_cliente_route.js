@@ -5,7 +5,8 @@ const router = express.Router();
 
 // Crear un precio especial para cliente
 router.post('/', async (req, res) => {
-    const { datos } = req.body;
+    const {datos} = req.body;
+    console.log('Datos recibidos para crear Precio Especial para Cliente:', datos);
     try {
         const precioCliente = await precioClienteService.crearPrecioCliente(datos);
         if (!precioCliente) {
@@ -117,7 +118,7 @@ router.put('/:id', async (req, res) => {
 
 // Eliminar precio especial de un producto para un cliente
 router.delete('/:id', async (req, res) => {
-    const { id } = req.params;
+    const  {id}  = req.params;
     try {
         const eliminado = await precioClienteService.eliminarPrecioCliente(id);
         if (!eliminado) {

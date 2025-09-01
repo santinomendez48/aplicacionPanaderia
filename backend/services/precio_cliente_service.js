@@ -4,9 +4,16 @@ import productoRepository from "../repositories/producto_repository.js";
 
 class PrecioClienteService {
     async validarDatos(datos) {
+        console.log('Validando datos:', datos.id_cliente, datos.id_producto, datos.precio_especial);
         // Validar datos 
-        if (!datos.id_cliente && !datos.id_producto && !datos.precio_especial) {
-            throw new Error('Al menos uno de los campos id_cliente, id_producto o precio_especial debe ser proporcionado');
+        if ( !datos.id_cliente ) {
+            throw new Error('id_cliente es obligatorio');
+        }
+        if ( !datos.id_producto ) {
+            throw new Error('id_producto es obligatorio');
+        }
+        if ( !datos.precio_especial ) {
+            throw new Error('precio_especial es obligatorio');
         }
         // Validar tipo de datos
         if (datos.id_cliente && typeof datos.id_cliente !== 'number') {

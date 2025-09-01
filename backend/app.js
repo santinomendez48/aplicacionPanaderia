@@ -42,7 +42,7 @@ app.use(cors())
     .use('/api/entregas', entregaRouter)
     .use('/api/detalles_entrega', detalleEntregaRouter)
     .use('/api/cuentas_cliente', cuentaClienteRouter)
-    .use('/api/precios_cliente', precioClienteRouter)
+    .use('/api/precio_cliente', precioClienteRouter)
     
     // Manejo de rutas no encontradas
     .use((req, res) => { res.status(404).json({ error: "Ruta no encontrada" }) });
