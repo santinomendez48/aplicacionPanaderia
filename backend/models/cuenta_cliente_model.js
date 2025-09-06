@@ -2,30 +2,38 @@ import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
     const CuentaCliente = sequelize.define("CuentaCliente", {
-        id_movimiento: {
+        id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        tipo_movimiento: {
-            type: DataTypes.ENUM("DEBITO", "CREDITO"),
-            allowNull: false
-        },
-        monto: {
-            type: DataTypes.FLOAT,
+        cliente_id: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         fecha: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW
+            type: DataTypes.DATEONLY,
+            allowNull: false
         },
-        metodo_pago: {
-            type: DataTypes.STRING,
-            allowNull: true
+        total_dia: {
+            type: DataTypes.FLOAT,
+            allowNull: false
         },
-        observaciones: {
-            type: DataTypes.STRING,
-            allowNull: true
+        pago: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        saldo_anterior: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        saldo_actual: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        entrega_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
     {

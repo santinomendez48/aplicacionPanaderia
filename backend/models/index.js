@@ -24,11 +24,11 @@ DetalleEntrega.belongsTo(Entrega, { foreignKey: "id_entrega" });
 Producto.hasMany(DetalleEntrega, { foreignKey: "id_producto" });
 DetalleEntrega.belongsTo(Producto, { foreignKey: "id_producto" });
 
-Cliente.hasMany(CuentaCliente, { foreignKey: "id_cliente" });
-CuentaCliente.belongsTo(Cliente, { foreignKey: "id_cliente" });
+Cliente.hasMany(CuentaCliente, { foreignKey: "cliente_id" });
+CuentaCliente.belongsTo(Cliente, { foreignKey: "cliente_id" });
 
-Entrega.hasMany(CuentaCliente, { foreignKey: "id_entrega" });
-CuentaCliente.belongsTo(Entrega, { foreignKey: "id_entrega" });
+Entrega.hasOne(CuentaCliente, { foreignKey: "entrega_id" });
+CuentaCliente.belongsTo(Entrega, { foreignKey: "entrega_id" });
 
 Cliente.hasMany(PrecioCliente, { foreignKey: "id_cliente" });
 PrecioCliente.belongsTo(Cliente, { foreignKey: "id_cliente" });

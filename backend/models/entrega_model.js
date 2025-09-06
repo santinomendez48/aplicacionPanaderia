@@ -7,6 +7,10 @@ export default (sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
+        id_cliente: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         fecha_entrega: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,

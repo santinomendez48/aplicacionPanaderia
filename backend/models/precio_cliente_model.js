@@ -7,7 +7,14 @@ export default (sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-        // FK a cliente y producto (relaciones en index.js)
+        id_cliente: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        id_producto: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         precio_especial: {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false
